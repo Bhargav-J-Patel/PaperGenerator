@@ -1499,6 +1499,35 @@ GO
 
 
 
+CREATE PROCEDURE [dbo].[usp_GetComboList]
+@Type as varchar(20),
+@Id  as varchar(100),
+@cCompany_ID as varchar(100)
+as
+BEGIN
+IF @Type = 'Medium'
+	BEGIN
+		select  cMedium_ID , cMedium from Tbl_MidiumMaster(nolock) where cCompany_ID =  @cCompany_ID
+	END
+ELSE IF @Type = 'Standard'
+	BEGIN
+		select cStandard_ID , cStandardName from Tbl_StandardMaster(nolock) where cMedium_ID = @Id and cCompany_ID =  @cCompany_ID
+	END
+ELSE IF @Type = 'Subject'
+	BEGIN
+		select cSubject_ID, cSubjectName from Tbl_SubjectMaster(nolock) where cStandard_ID = @Id and cCompany_ID =  @cCompany_ID
+	END
+ELSE IF @Type = 'Chapter'
+	BEGIN
+		select cChapter_ID , cChapterName from Tbl_ChapterMaster(nolock) where cSubject_ID  = @Id and cCompany_ID =  @cCompany_ID
+	END
+END
+GO
+
+
+
+
+
 
 
 
