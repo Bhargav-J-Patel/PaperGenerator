@@ -1,0 +1,604 @@
+.error, .warning, .success {
+    padding: 10px 10px 10px 34px;
+    margin: 2px 0;
+    width: 95%;
+    border: solid 1px;
+}
+
+.error {
+    border-colo +58963+r: #DF8F8F;
+    width: 98.4%;
+    background: #FFD7D7 url('../images/error.jpg') no-repeat 10px center;
+    vertical-align: middle;
+}
+
+.warning {
+    border-color: #E6DB55;
+    width: 98.4%;
+    background: #FFFBCC url('../img/warning.jpg') no-repeat 10px 8px;
+}
+
+.success {
+    border-color: #ACDBAD;
+    width: 98.4%;
+    background: #ECFAE3 url('../assets/img/success.jpg') no-repeat 10px 8px;
+}
+
+.errorListpopup {
+    border: 1px solid;
+    margin: 5px auto 5px;
+    padding: 5px 5px 5px 30px;
+    font: bold 10px verdana;
+    line-height: 16px;
+    color: #D8000C;
+    background: #F2D6D6 url('../images/cross_octagon.png') 10px center no-repeat;
+    margin-bottom: -20px;
+    width: 98%;
+    float: inherit;
+}
+
+.AutoComplete_completionListElement {
+    visibility: hidden;
+    margin: 0px !important;
+    background-color: white;
+    padding: 0px 0px 0px 0px;
+    color: black;
+    border: 1px solid grey;
+    border-style: solid;
+    cursor: pointer;
+    height: auto;
+    width: 100px;
+    overflow: auto;
+    text-align: left;
+    list-style-type: none;
+    font-family: Verdana;
+    font-size: 12px;
+}
+
+.AutoComplete_highlightedListItem {
+    background-color: #c3ebf9;
+    padding: 1px;
+}
+
+.AutoComplete_listItem {
+    background-color: white;
+    padding: 1px;
+}
+
+.commontable {
+    margin-left: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+    /*.commontable tr {
+        height: 20px;
+    }*/
+
+    .commontable th {
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 2px;
+    }
+
+    .commontable td {
+        font-size: 12px;
+        padding-bottom: 4px;
+    }
+
+        .commontable td table tr td {
+            text-align: left;
+            padding: 0px 0px 0px 0px;
+            border-style: none;
+        }
+
+        .commontable td table td table tr td {
+            text-align: left;
+            padding: 0px 0px 0px 0px;
+            border-style: none;
+        }
+
+        .commontable td img {
+            vertical-align: middle;
+        }
+
+        .commontable td.backcolor {
+            background-color: #F9F9F9;
+        }
+
+    .commontable .border-none th, CommonTable .border-none td {
+        border: none;
+    }
+
+    .commontable .backcolor-none th, CommonTable .backcolor-none td {
+        background: none;
+    }
+
+
+
+.txtbox {
+    height: 25px;
+    padding: 1px;
+    width: 150px;
+    color: #444;
+    border: 1px #7A7A7A solid;
+}
+
+.resetbtn {
+    padding: 0px;
+    height: 30px;
+    width: 55px;
+}
+
+.common_select {
+    padding: 1px;
+    height: 25px;
+    color: #444;
+    border: 1px #7f9db9 solid;
+}
+
+/*.bgcolrred
+{
+    background-color: #FFe6e6;
+}
+
+.bgcolrblue
+{
+    background-color: #D9EBFB;
+}
+
+.bgcolrgreen
+{
+    background-color: #E6f2f2;
+}*/
+
+.CommonTable2 {
+    background-color: #FFFFFF;
+    margin: 0 0 8px;
+}
+
+    .CommonTable2 th {
+        font-weight: bold;
+        text-align: center;
+        padding: 2px 2px;
+        font-size: 12px;
+        color: #000000;
+        border: 1px solid #CCCCCC;
+        vertical-align: middle;
+        background-color: #EEEEEE;
+        background-image: -moz-linear-gradient(top, #F6F6F6, #EEEEEE);
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#F6F6F6), to(#EEEEEE));
+        background-image: -webkit-linear-gradient(#F6F6F6, #EEEEEE);
+        background-image: -o-linear-gradient(#F6F6F6, #EEEEEE);
+        background-image: linear-gradient(top, #F6F6F6, #EEEEEE);
+    }
+
+
+    .CommonTable2 td {
+        text-align: left;
+        border: 1px solid #CCCCCC;
+        padding: 2px 2px;
+    }
+
+        .CommonTable2 td table tr td {
+            text-align: left;
+            padding: 0px 0px;
+            border-style: none;
+        }
+
+        .CommonTable2 td table td table tr td {
+            text-align: left;
+            padding: 0px 0px;
+            border-style: none;
+        }
+
+        .CommonTable2 td img {
+            vertical-align: middle;
+        }
+
+        .CommonTable2 td.backcolor {
+            background-color: #F9F9F9;
+        }
+
+CommonTable2 .border-none th, CommonTable .border-none td {
+    border: none;
+}
+
+CommonTable2 .backcolor-none th, CommonTable .backcolor-none td {
+    background: none;
+}
+
+
+.CommonTable3 {
+    background-color: #FFFFFF;
+    margin: 0 0 8px;
+}
+
+    .CommonTable3 th {
+        font-weight: bold;
+        text-align: center;
+        padding: 8px 5px;
+        font-size: 14px;
+        color: #000000;
+        border: 1px solid #CCCCCC;
+        vertical-align: middle;
+        background-color: #EEEEEE;
+        background-image: -moz-linear-gradient(top, #F6F6F6, #EEEEEE);
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#F6F6F6), to(#EEEEEE));
+        background-image: -webkit-linear-gradient(#F6F6F6, #EEEEEE);
+        background-image: -o-linear-gradient(#F6F6F6, #EEEEEE);
+        background-image: linear-gradient(top, #F6F6F6, #EEEEEE);
+    }
+
+
+    .CommonTable3 td {
+        text-align: left;
+        border: 1px solid #CCCCCC;
+        font-size: 14px; /* padding: 3px 3px;*/
+    }
+
+        .CommonTable3 td table tr td {
+            text-align: left;
+            padding: 0px 0px;
+            border-style: none;
+        }
+
+        .CommonTable3 td table td table tr td {
+            text-align: left;
+            padding: 0px 0px;
+            border-style: none;
+        }
+
+        .CommonTable3 td img {
+            vertical-align: middle;
+        }
+
+        .CommonTable3 td.backcolor {
+            background-color: #F9F9F9;
+        }
+
+CommonTable3 .border-none th, CommonTable .border-none td {
+    border: none;
+}
+
+CommonTable3 .backcolor-none th, CommonTable .backcolor-none td {
+    background: none;
+}
+
+
+
+
+
+
+.date_picker {
+    width: 150px;
+    padding-right: 36px;
+    cursor: pointer;
+    border: 1px #7f9db9 solid;
+    background: url(../Images/cal.jpg) center right no-repeat;
+    background-color: #D9EBFB;
+}
+
+
+.cal_Theme1 .ajax__calendar_container {
+    background-color: #DEF1F4;
+    border: solid 1px #77D5F7;
+    padding: 0px 0px 0px 0px;
+    width: 190px;
+    z-index: 99999;
+}
+
+.cal_Theme1 .ajax__calendar_header {
+    background-color: #ffffff;
+    margin-bottom: 2px;
+}
+
+.cal_Theme1 .ajax__calendar_title, .cal_Theme1 .ajax__calendar_next, .cal_Theme1 .ajax__calendar_prev {
+    color: #004080;
+    padding-top: 3px;
+}
+
+.cal_Theme1 .ajax__calendar_body {
+    background-color: #ffffff;
+    border: solid 0px #77D5F7;
+    width: 180px;
+    margin: 4px 4px 4px 4px;
+}
+
+.cal_Theme1 .ajax__calendar_dayname {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 2px;
+    margin-top: 2px;
+    color: #004080;
+    width: 100%;
+    margin-right: 3px;
+}
+
+.cal_Theme1 .ajax__calendar_days {
+    color: #004080;
+    text-align: center;
+    margin-right: 5px;
+    width: 100%;
+    max-height: 20px;
+}
+
+.cal_Theme1 .ajax__calendar_day {
+    color: #004080;
+    text-align: center;
+    margin-right: 5px;
+    width: 100%;
+    padding-bottom: 1px;
+    margin-bottom: 1px;
+    padding-top: 1px;
+    margin-top: 1px;
+}
+
+
+
+.cal_Theme1 .ajax__calendar_hover .ajax__calendar_day, .cal_Theme1 .ajax__calendar_hover .ajax__calendar_month, .cal_Theme1 .ajax__calendar_hover .ajax__calendar_year, .cal_Theme1 .ajax__calendar_active {
+    color: #004080;
+    font-weight: bold;
+    background-color: #DEF1F4;
+}
+
+.cal_Theme1 .ajax__calendar_today {
+    font-weight: bold;
+    padding-top: -10px;
+    margin-top: -4px;
+    margin-bottom: 2px;
+    vertical-align: middle;
+}
+
+.cal_Theme1 .ajax__calendar_other, .cal_Theme1 .ajax__calendar_hover .ajax__calendar_today, .cal_Theme1 .ajax__calendar_hover .ajax__calendar_title {
+    color: #bbbbbb;
+    z-index: 999;
+}
+
+.AutoComplete_completionListElement {
+    visibility: hidden;
+    margin: 0px !important;
+    background-color: white;
+    padding: 0px 0px 0px 0px;
+    color: black;
+    border: 1px solid grey;
+    border-style: solid;
+    cursor: pointer;
+    height: 200px;
+    width: 100px;
+    overflow: auto;
+    text-align: left;
+    list-style-type: none;
+    font-family: Verdana;
+    font-size: 12px;
+}
+
+.AutoComplete_highlightedListItem {
+    background-color: #c3ebf9;
+    padding: 1px;
+}
+
+.AutoComplete_listItem {
+    background-color: white;
+    padding: 1px;
+}
+
+.chkbox {
+    height: 100%;
+    margin-top: 0px;
+}
+
+    .chkbox label {
+        margin-bottom: 9px;
+        margin-left: 4px;
+    }
+
+
+.CommonTable4 {
+    background-color: #FFFFFF;
+    margin: 0 0 8px;
+    border: 1px solid black;
+}
+
+    .CommonTable4 th {
+        font-weight: bold;
+        text-align: center;
+        padding: 8px 5px;
+        font-size: 14px;
+        color: #000000;
+        border: 1px solid black;
+        vertical-align: middle;
+        /*background-color: #EEEEEE;
+    background-image: -moz-linear-gradient(top, #F6F6F6, #EEEEEE);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#F6F6F6), to(#EEEEEE));
+    background-image: -webkit-linear-gradient(#F6F6F6, #EEEEEE);
+    background-image: -o-linear-gradient(#F6F6F6, #EEEEEE);
+    background-image: linear-gradient(top, #F6F6F6, #EEEEEE);*/
+    }
+
+
+    .CommonTable4 td {
+        text-align: left;
+        border: 1px solid black;
+        font-size: 14px;
+        padding: 3px 3px;
+    }
+
+        .CommonTable4 td table tr td {
+            text-align: left;
+            padding: 0px 0px;
+            border-style: none;
+        }
+
+        .CommonTable4 td table td table tr td {
+            text-align: left;
+            padding: 0px 0px;
+            border-style: none;
+        }
+
+        .CommonTable4 td img {
+            vertical-align: middle;
+        }
+
+        .CommonTable4 td.backcolor {
+            background-color: #F9F9F9;
+        }
+
+CommonTable4 .border-none th, CommonTable .border-none td {
+    border: none;
+}
+
+CommonTable4 .backcolor-none th, CommonTable .backcolor-none td {
+    background: none;
+}
+
+
+.black .ajax__calendar_container {
+    width: 190px;
+    background-color: #000000;
+    border: solid 1px #666666;
+    -moz-border-radius-topleft: 8px;
+    -webkit-border-top-left-radius: 8px;
+    -khtml-border-top-left-radius: 8px;
+    border-top-left-radius: 8px;
+    -moz-border-radius-topright: 8px;
+    -webkit-border-top-right-radius: 8px;
+    -khtml-border-top-right-radius: 8px;
+    border-top-right-radius: 8px;
+    -moz-border-radius-bottomleft: 8px;
+    -webkit-border-bottom-left-radius: 8px;
+    -khtml-border-bottom-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    -moz-border-radius-bottomright: 8px;
+    -webkit-border-bottom-right-radius: 8px;
+    -khtml-border-bottom-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.black .ajax__calendar_body {
+    width: 180px;
+    height: 150px;
+    background-color: #000000;
+    border: solid 1px #666666;
+}
+
+.black .ajax__calendar_header {
+    background-color: #626262;
+    margin-bottom: 8px;
+    -moz-border-radius-topleft: 4px;
+    -webkit-border-top-left-radius: 4px;
+    -khtml-border-top-left-radius: 4px;
+    border-top-left-radius: 4px;
+    -moz-border-radius-topright: 4px;
+    -webkit-border-top-right-radius: 4px;
+    -khtml-border-top-right-radius: 4px;
+    border-top-right-radius: 4px;
+    -moz-border-radius-bottomleft: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+    -khtml-border-bottom-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    -moz-border-radius-bottomright: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+    -khtml-border-bottom-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.black .ajax__calendar_title {
+    color: #ffffff;
+    padding-top: 3px;
+}
+
+.black .ajax__calendar_next,
+.black .ajax__calendar_prev {
+    border: solid 4px #ffffff;
+    background-color: #ffffff;
+    -moz-border-radius-topleft: 18px;
+    -webkit-border-top-left-radius: 18px;
+    -khtml-border-top-left-radius: 18px;
+    border-top-left-radius: 18px;
+    -moz-border-radius-topright: 18px;
+    -webkit-border-top-right-radius: 18px;
+    -khtml-border-top-right-radius: 18px;
+    border-top-right-radius: 18px;
+    -moz-border-radius-bottomleft: 18px;
+    -webkit-border-bottom-left-radius: 18px;
+    -khtml-border-bottom-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+    -moz-border-radius-bottomright: 18px;
+    -webkit-border-bottom-right-radius: 18px;
+    -khtml-border-bottom-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+}
+
+.black .ajax__calendar_hover .ajax__calendar_next,
+.black .ajax__calendar_hover .ajax__calendar_prev {
+    border: solid 4px #328BC8;
+    background-color: #ffffff;
+    -moz-border-radius-topleft: 4px;
+    -webkit-border-top-left-radius: 4px;
+    -khtml-border-top-left-radius: 4px;
+    border-top-left-radius: 4px;
+    -moz-border-radius-topright: 4px;
+    -webkit-border-top-right-radius: 4px;
+    -khtml-border-top-right-radius: 4px;
+    border-top-right-radius: 4px;
+    -moz-border-radius-bottomleft: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+    -khtml-border-bottom-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    -moz-border-radius-bottomright: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+    -khtml-border-bottom-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.black .ajax__calendar_dayname {
+    text-align: center;
+    margin-bottom: 4px;
+    margin-top: 2px;
+    color: #ffffff;
+    background-color: #000000;
+}
+
+.black .ajax__calendar_day,
+.black .ajax__calendar_month,
+.black .ajax__calendar_year {
+    margin: 1px 1px 1px 1px;
+    text-align: center;
+    border: solid 1px #000000;
+    color: #ffffff;
+    background-color: #626262;
+}
+
+.black .ajax__calendar_hover .ajax__calendar_day,
+.black .ajax__calendar_hover .ajax__calendar_month,
+.black .ajax__calendar_hover .ajax__calendar_year {
+    color: #ffffff;
+    font-weight: bold;
+    background-color: #328BC8;
+    border: solid 1px #328BC8;
+}
+
+.black .ajax__calendar_active .ajax__calendar_day,
+.black .ajax__calendar_active .ajax__calendar_month,
+.black .ajax__calendar_active .ajax__calendar_year {
+    color: #ffffff;
+    font-weight: bold;
+    background-color: #F7B64A;
+}
+
+.black .ajax__calendar_today .ajax__calendar_day {
+    color: #ffffff;
+    font-weight: bold;
+    background-color: #F7B64A;
+}
+
+.black .ajax__calendar_other,
+.black .ajax__calendar_hover .ajax__calendar_today {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.black .ajax__calendar_days {
+    background-color: #000000;
+}
