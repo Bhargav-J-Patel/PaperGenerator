@@ -2108,7 +2108,144 @@ end
 GO
 
 
+------------ Date : 22/04/2018 / By Bhargav Patel
 
+CREATE TABLE [dbo].[Tbl_Question_Heading_Master](
+	[cQuestion_Heading_ID] [uniqueidentifier] NOT NULL,
+	[cMedium_ID] [uniqueidentifier] NOT NULL,
+	[cStandard_ID] [uniqueidentifier] NOT NULL,
+	[cSubject_ID] [uniqueidentifier] NOT NULL,
+	[cQuestion_Type_ID] [uniqueidentifier] NOT NULL,
+	[cHeadingName] [nvarchar](500) NOT NULL,
+	[cCompany_ID] [uniqueidentifier] NOT NULL,
+	[cInsetedBy] [uniqueidentifier] NULL,
+	[dInserted_Date] [datetime] NULL,
+	[cUpdatedBy] [uniqueidentifier] NULL,
+	[dUpdated_Date] [datetime] NULL,
+ CONSTRAINT [PK_Tbl_Question_Heading_Master] PRIMARY KEY CLUSTERED 
+(
+	[cQuestion_Heading_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[Tbl_Question_Heading_Master] ADD  CONSTRAINT [DF_Tbl_Question_Heading_Master_cQuestion_Heading_ID]  DEFAULT (newid()) FOR [cQuestion_Heading_ID]
+GO
+
+ALTER TABLE [dbo].[Tbl_Question_Heading_Master]  WITH CHECK ADD  CONSTRAINT [FK_Tbl_Question_Heading_Master_Login_Insertedby] FOREIGN KEY([cInsetedBy])
+REFERENCES [dbo].[Login] ([cLogin_ID])
+GO
+
+ALTER TABLE [dbo].[Tbl_Question_Heading_Master] CHECK CONSTRAINT [FK_Tbl_Question_Heading_Master_Login_Insertedby]
+GO
+
+ALTER TABLE [dbo].[Tbl_Question_Heading_Master]  WITH CHECK ADD  CONSTRAINT [FK_Tbl_Question_Heading_Master_Login_UpdatedBy] FOREIGN KEY([cUpdatedBy])
+REFERENCES [dbo].[Login] ([cLogin_ID])
+GO
+
+ALTER TABLE [dbo].[Tbl_Question_Heading_Master] CHECK CONSTRAINT [FK_Tbl_Question_Heading_Master_Login_UpdatedBy]
+GO
+
+ALTER TABLE [dbo].[Tbl_Question_Heading_Master]  WITH CHECK ADD  CONSTRAINT [FK_Tbl_Question_Heading_Master_Tbl_MidiumMaster] FOREIGN KEY([cMedium_ID])
+REFERENCES [dbo].[Tbl_MidiumMaster] ([cMedium_ID])
+GO
+
+ALTER TABLE [dbo].[Tbl_Question_Heading_Master] CHECK CONSTRAINT [FK_Tbl_Question_Heading_Master_Tbl_MidiumMaster]
+GO
+
+ALTER TABLE [dbo].[Tbl_Question_Heading_Master]  WITH CHECK ADD  CONSTRAINT [FK_Tbl_Question_Heading_Master_Tbl_Question_Type_Master] FOREIGN KEY([cQuestion_Type_ID])
+REFERENCES [dbo].[Tbl_Question_Type_Master] ([cQuestion_Type_ID])
+GO
+
+ALTER TABLE [dbo].[Tbl_Question_Heading_Master] CHECK CONSTRAINT [FK_Tbl_Question_Heading_Master_Tbl_Question_Type_Master]
+GO
+
+ALTER TABLE [dbo].[Tbl_Question_Heading_Master]  WITH CHECK ADD  CONSTRAINT [FK_Tbl_Question_Heading_Master_Tbl_StandardMaster] FOREIGN KEY([cStandard_ID])
+REFERENCES [dbo].[Tbl_StandardMaster] ([cStandard_ID])
+GO
+
+ALTER TABLE [dbo].[Tbl_Question_Heading_Master] CHECK CONSTRAINT [FK_Tbl_Question_Heading_Master_Tbl_StandardMaster]
+GO
+
+ALTER TABLE [dbo].[Tbl_Question_Heading_Master]  WITH CHECK ADD  CONSTRAINT [FK_Tbl_Question_Heading_Master_Tbl_SubjectMaster] FOREIGN KEY([cSubject_ID])
+REFERENCES [dbo].[Tbl_SubjectMaster] ([cSubject_ID])
+GO
+
+ALTER TABLE [dbo].[Tbl_Question_Heading_Master] CHECK CONSTRAINT [FK_Tbl_Question_Heading_Master_Tbl_SubjectMaster]
+GO
+
+ALTER TABLE [dbo].[Tbl_Question_Heading_Master]  WITH CHECK ADD  CONSTRAINT [FK_Tbl_Question_Heading_Master_TblCompany] FOREIGN KEY([cCompany_ID])
+REFERENCES [dbo].[TblCompany] ([cCompany_ID])
+GO
+
+ALTER TABLE [dbo].[Tbl_Question_Heading_Master] CHECK CONSTRAINT [FK_Tbl_Question_Heading_Master_TblCompany]
+GO
+
+
+
+
+
+
+CREATE PROCEDURE [dbo].[usp_CurdTbl_Question_HeadingMaster]
+(
+@Type AS VARCHAR(10),@cquestion_heading_id AS VARCHAR(10), @cmedium_id AS VARCHAR(10), @cstandard_id AS VARCHAR(10), @csubject_id AS VARCHAR(10),
+@cquestion_type_id AS VARCHAR(10), @cheadingname AS NVARCHAR(500), @ccompany_id AS VARCHAR(10), @cinsetedby AS VARCHAR(10)
+)
+
+AS
+BEGIN
+SET NOCOUNT ON;
+
+BEGIN TRANSACTION;
+Declare @ErrorMsg nvarchar(4000)
+
+SET DATEFORMAT DMY
+
+BEGIN TRY
+	if @Type='I'
+	begin
+		INSERT INTO dbo.Tbl_Question_Heading_Master (cQuestion_Heading_ID, cMedium_ID, cStandard_ID, cSubject_ID, cQuestion_Type_ID, cHeadingName, cCompany_ID, cInsetedBy, dInserted_Date)
+		VALUES (@cquestion_heading_id, @cmedium_id, @cstandard_id, @csubject_id, @cquestion_type_id, @cheadingname, @ccompany_id, @cinsetedby, GETDATE())
+	end
+
+	if @Type='U'
+	begin
+		UPDATE dbo.Tbl_Question_Heading_Master
+		SET cMedium_ID = @cmedium_id,
+			cStandard_ID = @cstandard_id,
+			cSubject_ID = @csubject_id,
+			cQuestion_Type_ID = @cquestion_type_id,
+			cHeadingName = @cheadingname,
+			cCompany_ID = @ccompany_id,
+			cUpdatedBy = @cinsetedby,
+			dUpdated_Date = GETDATE()
+		WHERE cQuestion_Heading_ID = @cquestion_heading_id 
+		
+
+	end
+	if @Type='D'
+	begin
+		DELETE FROM Tbl_Question_Heading_Master WHERE cQuestion_Heading_ID = @cquestion_heading_id
+	end
+
+COMMIT TRANSACTION;
+END TRY
+BEGIN CATCH
+	select @ErrorMsg = ERROR_MESSAGE();
+	if (XACT_STATE() = -1)
+		begin
+			ROLLBACK TRANSACTION;
+			RAISERROR(@ErrorMsg,16,1);
+		end
+	if (XACT_STATE() = 1)
+		begin
+			COMMIT TRANSACTION;
+			RAISERROR(@ErrorMsg,16,1);
+		end
+END CATCH
+END
+GO
 
 
 
