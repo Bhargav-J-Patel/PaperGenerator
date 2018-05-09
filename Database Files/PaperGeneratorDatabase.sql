@@ -2247,6 +2247,367 @@ END CATCH
 END
 GO
 
+-------------- Updated by Devanshi Pujara on date : 09/05/2018
+
+
+
+
+CREATE PROCEDURE [dbo].[usp_SearchMaster]
+@Type as varchar(20),
+@Id  as varchar(100)
+as
+begin
+
+if @type='Medium'
+begin
+	select cMedium from Tbl_MidiumMaster(nolock) where cMedium_ID=@id
+end
+ELSE if @type='Standard'
+begin
+	select cStandard_ID , cStandardName , cMedium_ID  from Tbl_StandardMaster(nolock) where cStandard_ID =@id
+end
+ELSE IF @type = 'Subject'
+ 	BEGIN
+ 		SELECT cMedium_ID,cStandard_ID,cSubjectName FROM Tbl_SubjectMaster(nolock) WHERE cSubject_ID = @id
+ 	END
+ELSE IF @type = 'Chapter'
+ 	BEGIN
+ 		SELECT  cMedium_ID,cStandard_ID,cSubject_ID,nChaper_Index,cChapterName,bDemo  FROM Tbl_ChapterMaster(nolock) WHERE cChapter_ID = @id
+ 	END
+ELSE IF @type = 'Topic'
+ 	BEGIN
+ 		SELECT cMedium_ID,cStandard_ID,cSubject_ID,cChapter_ID,nTopic_Index,cTopicName  FROM Tbl_TopicMaster(nolock) WHERE cTopic_ID = @id
+ 	END
+ELSE IF @type = 'QuestionTypeMaster'
+ 	BEGIN
+ 		SELECT cMedium_ID,cStandard_ID,cSubject_ID,cDescription  FROM Tbl_Question_Type_Master(nolock) WHERE cQuestion_Type_ID = @id
+ 	END
+ELSE IF @type = 'QuestionHeading'
+ 	BEGIN
+ 		SELECT cMedium_ID,cStandard_ID,cSubject_ID,cQuestion_Type_ID,cHeadingName  FROM Tbl_Question_Heading_Master(nolock) WHERE cQuestion_Type_ID = @id
+ 	END
+ELSE IF @type = 'LevelMaster'
+ 	BEGIN
+ 		SELECT cLevelName  FROM Tbl_LevelMaster(nolock) WHERE cLevel_ID = @id
+ 	END
+END
+
+GO
+
+/****** Object:  StoredProcedure [dbo].[usp_GetQuetionHeadingMaster]    Script Date: 5/4/2018 9:23:33 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE PROCEDURE [dbo].[usp_GetQuetionHeadingMaster]
+@DisplayLength int,
+@DisplayStart int,
+@SortCol int,
+@SortDir nvarchar(10),
+@Search nvarchar(255) = NULL,
+@compid AS NVARCHAR(250)
+
+AS
+
+BEGIN
+
+	DECLARE @FirstRec int, @LastRec int
+	SET @FirstRec = @DisplayStart;
+	SET @LastRec = @DisplayStart + @DisplayLength;
+
+	WITH CTE_TblMasterAssembly AS
+	(
+		SELECT ROW_NUMBER() OVER (ORDER BY 
+								CASE WHEN (@SortCol = 0 and @SortDir = 'asc') then	
+								cMedium END ASC,
+								CASE WHEN (@SortCol = 0 and @SortDir = 'desc') then	
+								cMedium END DESC,
+								CASE WHEN (@SortCol = 1 and @SortDir = 'asc') then	
+								cStandardName END ASC,
+								CASE WHEN (@SortCol = 1 and @SortDir = 'desc') then	
+								cStandardName END DESC,
+								CASE WHEN (@SortCol = 2 and @SortDir = 'asc') then	
+								cSubjectName END ASC,
+								CASE WHEN (@SortCol = 2 and @SortDir = 'desc') then	
+								cSubjectName END DESC,
+								CASE WHEN (@SortCol = 3 and @SortDir = 'asc') then	
+								cHeadingName END ASC,
+								CASE WHEN (@SortCol = 3 and @SortDir = 'desc') then	
+								cHeadingName END DESC
+								) AS RowNum,
+								count(*) OVER() as TotalCount,
+								mm.cMedium,
+								sm.cStandardName,
+								subm.cSubjectName,
+								QTM.cHeadingName,
+								'<a href="MasterQuestionHeading.aspx?ID='+ convert(nvarchar(100),cQuestion_Type_ID) +'&E=1" title="Edit"><img src="assets/img/edit.png" />' as cedit,
+								'<a href="MasterQuestionHeading.aspx?ID='+ convert(nvarchar(100),cQuestion_Type_ID) +'&D=1" title="Delete"><img src="assets/img/delete.png" /></a>' as cdelete
+								--'' as editdelete,
+								--'' as cedit, '' as cdelete
+								FROM Tbl_Question_Heading_Master(nolock) QTM   
+								INNER JOIN Tbl_SubjectMaster(nolock) subm on subm.cSubject_ID = QTM.cSubject_ID
+								INNER JOIN Tbl_StandardMaster(nolock) sm on sm.cStandard_ID = QTM.cStandard_ID
+								INNER JOIN Tbl_MidiumMaster(nolock) mm ON mm.cMedium_ID = QTM.cMedium_ID
+								WHERE QTM.cCompany_ID =@compid and (@Search IS NULL
+										OR cMedium LIKE	'%' + @Search + '%'
+										OR cStandardName LIKE	'%' + @Search + '%'
+										OR cSubjectName LIKE	'%' + @Search + '%'
+										OR cHeadingName LIKE	'%' + @Search + '%'
+									)
+							)
+	
+	SELECT * FROM CTE_TblMasterAssembly
+	WHERE RowNum > @FirstRec AND RowNum <= @LastRec
+
+END
+
+--SP_ListMasterZone '5','0','0','asc',''
+GO
+
+/****** Object:  StoredProcedure [dbo].[usp_GetTotalCount]    Script Date: 5/4/2018 9:23:33 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[usp_GetTotalCount]
+(
+@PageName AS NVARCHAR(MAX),
+@compid AS NVARCHAR(MAX)
+
+)
+
+AS
+
+IF @PageName = 'Midium'
+ 	BEGIN
+ 		SELECT count(*) FROM Tbl_MidiumMaster(nolock) WHERE cCompany_ID = @compid
+ 	END
+ELSE IF @PageName = 'Standard'
+ 	BEGIN
+ 		SELECT count(*) FROM Tbl_StandardMaster(nolock) WHERE cCompany_ID = @compid
+ 	END
+ELSE IF @PageName = 'Subject'
+ 	BEGIN
+ 		SELECT count(*) FROM Tbl_SubjectMaster(nolock) WHERE cCompany_ID = @compid
+ 	END
+ELSE IF @PageName = 'Chapter'
+ 	BEGIN
+ 		SELECT count(*) FROM Tbl_ChapterMaster(nolock) WHERE cCompany_ID = @compid
+ 	END
+ELSE IF @PageName = 'Topic'
+ 	BEGIN
+ 		SELECT count(*) FROM Tbl_TopicMaster(nolock) WHERE cCompany_ID = @compid
+ 	END
+ELSE IF @PageName = 'QuestionTypeMaster'
+ 	BEGIN
+ 		SELECT count(*) FROM Tbl_Question_Type_Master(nolock) WHERE cCompany_ID = @compid
+ 	END
+ELSE IF @PageName = 'QuestionHeadingMaster'
+ 	BEGIN
+ 		SELECT count(*) FROM Tbl_Question_Heading_Master(nolock) WHERE cCompany_ID = @compid
+ 	END
+ELSE IF @PageName = 'LevelMaster'
+ 	BEGIN
+ 		SELECT count(*) FROM Tbl_LevelMaster(nolock) WHERE cCompany_ID = @compid
+ 	END
+GO
+
+/****** Object:  StoredProcedure [dbo].[usp_CurdTbl_Question_HeadingMaster]    Script Date: 5/4/2018 9:23:33 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+CREATE PROCEDURE [dbo].[usp_CurdTbl_Question_HeadingMaster]
+(
+@Type AS VARCHAR(10),@cquestion_heading_id AS VARCHAR(250), @cmedium_id AS VARCHAR(250), @cstandard_id AS VARCHAR(250), @csubject_id AS VARCHAR(250),
+@cquestion_type_id AS VARCHAR(250), @cheadingname AS NVARCHAR(500), @ccompany_id AS VARCHAR(250), @cinsetedby AS VARCHAR(250)
+)
+
+AS
+BEGIN
+SET NOCOUNT ON;
+
+BEGIN TRANSACTION;
+Declare @ErrorMsg nvarchar(4000)
+
+SET DATEFORMAT DMY
+
+BEGIN TRY
+	if @Type='I'
+	begin
+	
+	select @cmedium_id, @cstandard_id, @csubject_id, @cquestion_type_id, @cheadingname, @ccompany_id, @cinsetedby, GETDATE()
+		INSERT INTO dbo.Tbl_Question_Heading_Master ( cMedium_ID, cStandard_ID, cSubject_ID, cQuestion_Type_ID, cHeadingName, cCompany_ID, cInsetedBy, dInserted_Date)
+		VALUES ( @cmedium_id, @cstandard_id, @csubject_id, @cquestion_type_id, @cheadingname, @ccompany_id, @cinsetedby, GETDATE())
+	end
+
+	if @Type='U'
+	begin
+		UPDATE dbo.Tbl_Question_Heading_Master
+		SET cMedium_ID = @cmedium_id,
+			cStandard_ID = @cstandard_id,
+			cSubject_ID = @csubject_id,
+			cQuestion_Type_ID = @cquestion_type_id,
+			cHeadingName = @cheadingname,
+			cCompany_ID = @ccompany_id,
+			cUpdatedBy = @cinsetedby,
+			dUpdated_Date = GETDATE()
+		WHERE cQuestion_Heading_ID = @cquestion_heading_id 
+		
+
+	end
+	if @Type='D'
+	begin
+		DELETE FROM Tbl_Question_Heading_Master WHERE cQuestion_Heading_ID = @cquestion_heading_id
+	end
+
+COMMIT TRANSACTION;
+END TRY
+BEGIN CATCH
+	select @ErrorMsg = ERROR_MESSAGE();
+	if (XACT_STATE() = -1)
+		begin
+			ROLLBACK TRANSACTION;
+			RAISERROR(@ErrorMsg,16,1);
+		end
+	if (XACT_STATE() = 1)
+		begin
+			COMMIT TRANSACTION;
+			RAISERROR(@ErrorMsg,16,1);
+		end
+END CATCH
+END
+
+GO
+
+/****** Object:  StoredProcedure [dbo].[usp_GetComboList]    Script Date: 5/4/2018 9:23:33 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[usp_GetComboList]
+@Type as varchar(20),
+@Id  as varchar(100),
+@cCompany_ID as varchar(100)
+as
+BEGIN
+IF @Type = 'Medium'
+	BEGIN
+		select '00000000-0000-0000-0000-000000000000' as cMedium_ID,'Select' as cMedium union
+		select  cMedium_ID , cMedium from Tbl_MidiumMaster(nolock) where cCompany_ID =  @cCompany_ID
+	END
+ELSE IF @Type = 'Standard'
+	BEGIN
+		select '00000000-0000-0000-0000-000000000000' as cStandard_ID,'Select' as cStandardName union
+		select cStandard_ID , cStandardName from Tbl_StandardMaster(nolock) where cMedium_ID = @Id and cCompany_ID =  @cCompany_ID
+	END
+ELSE IF @Type = 'Subject'
+	BEGIN
+		select '00000000-0000-0000-0000-000000000000' as cSubject_ID,'Select' as cSubjectName union
+		select cSubject_ID, cSubjectName from Tbl_SubjectMaster(nolock) where cStandard_ID = @Id and cCompany_ID =  @cCompany_ID
+	END
+ELSE IF @Type = 'Chapter'
+	BEGIN
+		select cChapter_ID , cChapterName from Tbl_ChapterMaster(nolock) where cSubject_ID  = @Id and cCompany_ID =  @cCompany_ID
+	END
+ELSE IF @Type = 'QuestionType'
+	BEGIN
+		select cQuestion_Type_ID , cDescription from Tbl_Question_Type_Master(nolock) where cSubject_ID  = @Id and cCompany_ID =  @cCompany_ID
+	END
+END
+
+GO
+
+/****** Object:  StoredProcedure [dbo].[usp_GetQuetionTypeMaster]    Script Date: 5/4/2018 9:23:33 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[usp_GetQuetionTypeMaster]
+@DisplayLength int,
+@DisplayStart int,
+@SortCol int,
+@SortDir nvarchar(10),
+@Search nvarchar(255) = NULL,
+@compid AS NVARCHAR(250)
+
+AS
+
+BEGIN
+
+	DECLARE @FirstRec int, @LastRec int
+	SET @FirstRec = @DisplayStart;
+	SET @LastRec = @DisplayStart + @DisplayLength;
+
+	WITH CTE_TblMasterAssembly AS
+	(
+		SELECT ROW_NUMBER() OVER (ORDER BY 
+								CASE WHEN (@SortCol = 0 and @SortDir = 'asc') then	
+								cMedium END ASC,
+								CASE WHEN (@SortCol = 0 and @SortDir = 'desc') then	
+								cMedium END DESC,
+								CASE WHEN (@SortCol = 1 and @SortDir = 'asc') then	
+								cStandardName END ASC,
+								CASE WHEN (@SortCol = 1 and @SortDir = 'desc') then	
+								cStandardName END DESC,
+								CASE WHEN (@SortCol = 2 and @SortDir = 'asc') then	
+								cSubjectName END ASC,
+								CASE WHEN (@SortCol = 2 and @SortDir = 'desc') then	
+								cSubjectName END DESC,
+								CASE WHEN (@SortCol = 3 and @SortDir = 'asc') then	
+								cDescription END ASC,
+								CASE WHEN (@SortCol = 3 and @SortDir = 'desc') then	
+								cDescription END DESC
+								) AS RowNum,
+								count(*) OVER() as TotalCount,
+								mm.cMedium,
+								sm.cStandardName,
+								subm.cSubjectName,
+								QTM.cDescription,
+								'<a href="MasterQuestionType.aspx?ID='+ convert(nvarchar(100),cQuestion_Type_ID) +'&E=1" title="Edit"><img src="assets/img/edit.png" />' as cedit,
+								'<a href="MasterQuestionType.aspx?ID='+ convert(nvarchar(100),cQuestion_Type_ID) +'&D=1" title="Delete"><img src="assets/img/delete.png" /></a>' as cdelete
+								--'' as editdelete,
+								--'' as cedit, '' as cdelete
+								FROM Tbl_Question_Type_Master(nolock) QTM   
+								INNER JOIN Tbl_SubjectMaster(nolock) subm on subm.cSubject_ID = QTM.cSubject_ID
+								INNER JOIN Tbl_StandardMaster(nolock) sm on sm.cStandard_ID = QTM.cStandard_ID
+								INNER JOIN Tbl_MidiumMaster(nolock) mm ON mm.cMedium_ID = QTM.cMedium_ID
+								WHERE QTM.cCompany_ID =@compid and (@Search IS NULL
+										OR cMedium LIKE	'%' + @Search + '%'
+										OR cStandardName LIKE	'%' + @Search + '%'
+										OR cSubjectName LIKE	'%' + @Search + '%'
+										OR cDescription LIKE	'%' + @Search + '%'
+									)
+							)
+	
+	SELECT * FROM CTE_TblMasterAssembly
+	WHERE RowNum > @FirstRec AND RowNum <= @LastRec
+
+END
+
+--SP_ListMasterZone '5','0','0','asc',''
+GO
+
+
+
 
 
 
