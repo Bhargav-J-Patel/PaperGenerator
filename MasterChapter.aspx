@@ -7,11 +7,14 @@
     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
         <ContentTemplate>
             <div class="success" runat="server" id="divsucess" visible="false">
-                <asp:Label ID="lblsucess" runat="server" Text=""></asp:Label></div>
+                <asp:Label ID="lblsucess" runat="server" Text=""></asp:Label>
+            </div>
             <div class="warning" runat="server" id="DivWarning" visible="false">
-                <asp:Label ID="LblWarning" runat="server" Text=""></asp:Label></div>
+                <asp:Label ID="LblWarning" runat="server" Text=""></asp:Label>
+            </div>
             <div class="error" runat="server" id="diverror" visible="false">
-                <asp:Label ID="lblerror" runat="server" Text=""></asp:Label></div>
+                <asp:Label ID="lblerror" runat="server" Text=""></asp:Label>
+            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
     <div class="row">
@@ -19,12 +22,11 @@
             <div class="widget-box">
                 <div class="widget-header">
                     <div style="float: left">
-                        <h4 class="widget-title">
-                            Chapter Master</h4>
+                        <h4 class="widget-title">Chapter Master</h4>
                     </div>
                     <div style="float: right;">
-                        <asp:Button ID="btnlist" Text="List" runat="server" class="btn btn-primary" Style="margin-top: 4px;
-                            margin-right: 3px;" OnClick="btnlist_Click" TabIndex="10" UseSubmitBehavior="false" />
+                        <asp:Button ID="btnlist" Text="List" runat="server" class="btn btn-primary" Style="margin-top: 4px; margin-right: 3px;"
+                            OnClick="btnlist_Click" TabIndex="10" UseSubmitBehavior="false" />
                     </div>
                 </div>
                 <asp:UpdatePanel runat="server" ID="up1">
@@ -32,8 +34,7 @@
                         <div class="widget-body">
                             <table class="commontable">
                                 <tr>
-                                    <th>
-                                        Midium
+                                    <th>Midium
                                     </th>
                                     <td>
                                         <asp:DropDownList runat="server" ID="DDLMedium" DataTextField="cMedium" Width="150px"
@@ -46,8 +47,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>
-                                        Standard
+                                    <th>Standard
                                     </th>
                                     <td>
                                         <asp:DropDownList runat="server" ID="DDLStandard" DataTextField="cStandardName" DataValueField="cStandard_ID"
@@ -60,8 +60,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>
-                                        Subject
+                                    <th>Subject
                                     </th>
                                     <td>
                                         <asp:DropDownList runat="server" ID="DDLSubject" DataTextField="cSubjectName" DataValueField="cSubject_ID"
@@ -73,8 +72,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th width="100px;">
-                                        Chapter Index :
+                                    <th width="100px;">Chapter Index :
                                     </th>
                                     <td width="200px">
                                         <asp:TextBox runat="server" ID="TxtChapterIndex" class="txtbox bgcolrblue" TabIndex="4"
@@ -85,8 +83,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th width="100px;">
-                                        Chapter Name :
+                                    <th width="100px;">Chapter Name :
                                     </th>
                                     <td width="200px">
                                         <asp:TextBox runat="server" ID="TxtChapterName" class="txtbox bgcolrblue" TabIndex="5"
@@ -97,8 +94,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>
-                                        Demo
+                                    <th>Demo
                                     </th>
                                     <td>
                                         <asp:CheckBox runat="server" ID="ChkDemo" TabIndex="6" />
@@ -114,8 +110,13 @@
                                             ValidationGroup="Main" TabIndex="8" />
                                         <asp:Button Text="Reset" runat="server" class="btn resetbtn" ID="btnreset" TabIndex="9"
                                             OnClick="btnreset_Click" />
+
+
+
+
                                     </td>
                                 </tr>
+                              
                             </table>
                         </div>
                     </ContentTemplate>
