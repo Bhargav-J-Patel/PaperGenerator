@@ -17,8 +17,10 @@
             mode: "textareas",
         });
     </script>
-    <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
+    <%--Original data--%>
+    <%--<script type="text/x-mathjax-config">
+  
+        MathJax.Hub.Config({
     extensions: ["tex2jax.js"],
     jax: ["input/TeX", "output/HTML-CSS"],
     tex2jax: {
@@ -28,9 +30,23 @@
     },
     "HTML-CSS": { fonts: ["TeX"] }
   });
-</script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js">
-</script>
+    </script>--%>
+    <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["STIX"] }
+  });
+    </script>
+
+    <%--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js">
+    </script>--%>
+    <script src="MathJax/MathJax.js" type="text/javascript"></script>
     <%--<script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     extensions: ["tex2jax.js"],
@@ -43,8 +59,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:TextBox ID="RichTextBox" runat="server" TextMode="MultiLine"></asp:TextBox>
     <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />
-
-    <asp:Label ID="lblDisplay" runat="server" Text=""></asp:Label>
-
+    <div id="pdfgenerate" runat="server">
+        <asp:Label ID="lblDisplay" runat="server" Text=""></asp:Label>
+    </div>
+    <asp:Button ID="Button1" runat="server" Text="PDFConvert" OnClick="Button1_Click" />
 </asp:Content>
 
