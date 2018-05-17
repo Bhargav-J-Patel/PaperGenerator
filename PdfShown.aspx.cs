@@ -12,7 +12,7 @@ public partial class PdfShown : System.Web.UI.Page
         if (Session["Data"] != null)
         {
             lblDisplay.Text = Session["Data"].ToString();
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "pagedata();", true);
+            //Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "pagedata();", true);
         }
     }
 }
