@@ -21,7 +21,10 @@ public class ListPage : System.Web.Services.WebService {
 
     public class ListAll
     {
+        public string cAnswerKey { get; set; }
+        public string NID { get; set; }
         public string cMedium, cStandardName, cSubjectName, nChaper_Index, cChapterName, nTopic_Index, cTopicName, cDescription, cLevelName, cedit, cdelete;
+
     }
 
     [WebMethod]
@@ -439,6 +442,60 @@ public class ListPage : System.Web.Services.WebService {
         JavaScriptSerializer js = new JavaScriptSerializer();
         Context.Response.Write(js.Serialize(result));
     }
+    [WebMethod]
+    public void ListQuestion(int iDisplayLength, int iDisplayStart, int iSortCol_0, string sSortDir_0, string sSearch)
+    {
+        int displayLength = iDisplayLength;
+        int displayStart = iDisplayStart;
+        int sortCol = iSortCol_0;
+        string sortDir = sSortDir_0;
+        string search = sSearch;
+
+
+        ListAll cls2 = new ListAll();
+        List<ListAll> myList = new List<ListAll>();
+
+
+
+        int filteredCount = 0;
+        DataSet DS = new DataSet();
+        SqlInstitute CN = new SqlInstitute();
+
+        DS = CN.RunSql("usp_GetQuestionMaster '" + displayLength + "','" + displayStart + "','" + sortCol + "','" + sortDir + "','" + search + "','" + HttpContext.Current.Request.Cookies["compid"].Value.ToString() + "'", "List");
+
+
+        if (DS.Tables.Count > 0)
+        {
+            if (DS.Tables[0].Rows.Count > 0)
+            {
+                for (int i = 0; i < DS.Tables[0].Rows.Count; i++)
+                {
+                    ListAll cls = new ListAll();
+                    filteredCount = Convert.ToInt32(DS.Tables[0].Rows[i]["TotalCount"] != DBNull.Value ? DS.Tables[0].Rows[i]["TotalCount"].ToString() : "0");
+                    cls.cMedium = DS.Tables[0].Rows[i]["cMedium"] != DBNull.Value ? DS.Tables[0].Rows[i]["cMedium"].ToString() : "";
+                    cls.cStandardName = DS.Tables[0].Rows[i]["cStandardName"] != DBNull.Value ? DS.Tables[0].Rows[i]["cStandardName"].ToString() : "";
+                    cls.cSubjectName = DS.Tables[0].Rows[i]["cSubjectName"] != DBNull.Value ? DS.Tables[0].Rows[i]["cSubjectName"].ToString() : "";
+                    cls.cChapterName = DS.Tables[0].Rows[i]["cChapterName"] != DBNull.Value ? DS.Tables[0].Rows[i]["cChapterName"].ToString() : "";
+                    cls.cAnswerKey = DS.Tables[0].Rows[i]["cAnswerKey"] != DBNull.Value ? DS.Tables[0].Rows[i]["cAnswerKey"].ToString() : "";
+                    cls.NID = DS.Tables[0].Rows[i]["NID"] != DBNull.Value ? DS.Tables[0].Rows[i]["NID"].ToString() : "";
+                    cls.cedit = DS.Tables[0].Rows[i]["cedit"] != DBNull.Value ? DS.Tables[0].Rows[i]["cedit"].ToString() : "";
+                    cls.cdelete = DS.Tables[0].Rows[i]["cdelete"] != DBNull.Value ? DS.Tables[0].Rows[i]["cdelete"].ToString() : "";
+                    myList.Add(cls);
+                }
+            }
+        }
+
+        var result = new
+        {
+            iTotalRecords = GetTotalCount("LevelMaster", ""),
+            //iTotalRecords = 5000,
+            iTotalDisplayRecords = filteredCount,
+            aaData = myList
+        };
+        JavaScriptSerializer js = new JavaScriptSerializer();
+        Context.Response.Write(js.Serialize(result));
+    }
+    
 
     private int GetTotalCount(string pageName, string cType)
     {

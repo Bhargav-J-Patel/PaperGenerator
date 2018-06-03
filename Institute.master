@@ -248,6 +248,8 @@
                                 Level </a><b class="arrow"></b></li>
                              <li class=""><a href="MasterQuestionHeading.aspx"><i class="menu-icon fa fa-caret-right"></i>
                                 Question Heading </a><b class="arrow"></b></li>
+                            <li class=""><a href="MasterQuestion.aspx"><i class="menu-icon fa fa-caret-right"></i>
+                                Question Master </a><b class="arrow"></b></li>
                            <%-- <li class=""><a href="MasterMedium.aspx"><i class="menu-icon fa fa-caret-right"></i>
                                 Question Heading </a><b class="arrow"></b></li>
                             <li class=""><a href="MasterMedium.aspx"><i class="menu-icon fa fa-caret-right"></i>
