@@ -38,7 +38,7 @@
                                 Midium
                             </th>
                             <td>
-                                <asp:DropDownList runat="server" ID="DDLMedium" DataTextField="cMedium"  Width="150px"
+                                <asp:DropDownList runat="server" ID="DDLMedium" DataTextField="cMedium"  Width="300px"
                                     DataValueField="cMedium_ID" CssClass="common_select" AutoPostBack="true"
                                     onselectedindexchanged="DDLMedium_SelectedIndexChanged" TabIndex="1">
                                 </asp:DropDownList>
@@ -53,7 +53,7 @@
                             </th>
                             <td>
                                 <asp:DropDownList runat="server" ID="DDLStandard" DataTextField="cStandardName" 
-                                    DataValueField="cStandard_ID" CssClass="common_select" Width="150px"  TabIndex="2"
+                                    DataValueField="cStandard_ID" CssClass="common_select" Width="300px"  TabIndex="2"
                                     onselectedindexchanged="DDLStandard_SelectedIndexChanged" AutoPostBack="true">
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="DDLStandard"
@@ -66,7 +66,7 @@
                                 Subject
                             </th>
                             <td>
-                                <asp:DropDownList runat="server" ID="DDLSubject" DataTextField="cSubjectName" DataValueField="cSubject_ID" CssClass="common_select" Width="150px" TabIndex="3">
+                                <asp:DropDownList runat="server" ID="DDLSubject" DataTextField="cSubjectName" DataValueField="cSubject_ID" CssClass="common_select" Width="300px" TabIndex="3">
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="DDLSubject"
                                     ErrorMessage="&lt;img src='assets/img/writing-icon.jpg' title='DELETE' alt='View' border='0'/&gt;"
@@ -77,9 +77,9 @@
                             <th width="100px;">
                                 Description:
                             </th>
-                            <td width="200px">
-                                <asp:TextBox runat="server" ID="TxtDescription" class="txtbox bgcolrblue" TabIndex="4"  TextMode="MultiLine" Height="50px"
-                                    Width="150px" />
+                            <td>
+                                <asp:TextBox runat="server" ID="TxtDescription" class="txtbox bgcolrblue" TabIndex="4"  TextMode="MultiLine" Height="80px"
+                                    Width="300px" />
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TxtDescription"
                                     ErrorMessage="&lt;img src='assets/img/writing-icon.jpg' title='DELETE' alt='View' border='0'/&gt;"
                                     ValidationGroup="Main"></asp:RequiredFieldValidator>

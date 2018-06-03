@@ -38,7 +38,7 @@
                                 Midium
                             </th>
                             <td>
-                                <asp:DropDownList runat="server" ID="DDLMedium" DataTextField="cMedium"  Width="150px"
+                                <asp:DropDownList runat="server" ID="DDLMedium" DataTextField="cMedium"  Width="300px"
                                     DataValueField="cMedium_ID" CssClass="common_select" AutoPostBack="true"
                                     onselectedindexchanged="DDLMedium_SelectedIndexChanged" TabIndex="1">
                                 </asp:DropDownList>
@@ -52,7 +52,7 @@
                                 Standard
                             </th>
                             <td>
-                                <asp:DropDownList runat="server" ID="DDLStandard" DataTextField="cStandardName" DataValueField="cStandard_ID" CssClass="common_select" Width="150px" TabIndex="2">
+                                <asp:DropDownList runat="server" ID="DDLStandard" DataTextField="cStandardName" DataValueField="cStandard_ID" CssClass="common_select" Width="300px" TabIndex="2">
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="DDLStandard"
                                     ErrorMessage="&lt;img src='assets/img/writing-icon.jpg' title='DELETE' alt='View' border='0'/&gt;"
@@ -63,9 +63,9 @@
                             <th width="100px;">
                                 Subject :
                             </th>
-                            <td width="200px">
+                            <td >
                                 <asp:TextBox runat="server" ID="TxtSubject" class="txtbox bgcolrblue" TabIndex="3"
-                                    Width="150px" />
+                                    Width="300px" />
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TxtSubject"
                                     ErrorMessage="&lt;img src='assets/img/writing-icon.jpg' title='DELETE' alt='View' border='0'/&gt;"
                                     ValidationGroup="Main"></asp:RequiredFieldValidator>

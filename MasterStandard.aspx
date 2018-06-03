@@ -34,7 +34,7 @@
                                 Midium
                             </th>
                             <td>
-                                <asp:DropDownList runat="server" ID="DDLMedium" DataTextField="cMedium" DataValueField="cMedium_ID" CssClass="common_select" Width="150px" TabIndex="1">
+                                <asp:DropDownList runat="server" ID="DDLMedium" DataTextField="cMedium" DataValueField="cMedium_ID" CssClass="common_select" Width="300px" TabIndex="1">
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="DDLMedium"
                                     ErrorMessage="&lt;img src='assets/img/writing-icon.jpg' title='DELETE' alt='View' border='0'/&gt;"
@@ -45,9 +45,9 @@
                             <th width="100px;">
                                 Standard :
                             </th>
-                            <td width="200px">
+                            <td >
                                 <asp:TextBox runat="server" ID="TxtStandard" class="txtbox bgcolrblue" TabIndex="2"
-                                    Width="150px" />
+                                    Width="300px" />
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TxtStandard"
                                     ErrorMessage="&lt;img src='assets/img/writing-icon.jpg' title='DELETE' alt='View' border='0'/&gt;"
                                     ValidationGroup="Main"></asp:RequiredFieldValidator>

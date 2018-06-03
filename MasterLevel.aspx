@@ -33,9 +33,9 @@
                             <th width="100px;">
                                 Level :
                             </th>
-                            <td width="200px">
+                            <td>
                                 <asp:TextBox runat="server" ID="TxtLevel" class="txtbox bgcolrblue" TabIndex="1"
-                                    Width="150px" />
+                                    Width="300px" />
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TxtLevel"
                                     ErrorMessage="&lt;img src='assets/img/writing-icon.jpg' title='DELETE' alt='View' border='0'/&gt;"
                                     ValidationGroup="Main"></asp:RequiredFieldValidator>

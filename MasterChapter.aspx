@@ -37,7 +37,7 @@
                                     <th>Midium
                                     </th>
                                     <td>
-                                        <asp:DropDownList runat="server" ID="DDLMedium" DataTextField="cMedium" Width="150px"
+                                        <asp:DropDownList runat="server" ID="DDLMedium" DataTextField="cMedium" Width="300px"
                                             DataValueField="cMedium_ID" CssClass="common_select" AutoPostBack="true" OnSelectedIndexChanged="DDLMedium_SelectedIndexChanged"
                                             TabIndex="1">
                                         </asp:DropDownList>
@@ -51,7 +51,7 @@
                                     </th>
                                     <td>
                                         <asp:DropDownList runat="server" ID="DDLStandard" DataTextField="cStandardName" DataValueField="cStandard_ID"
-                                            CssClass="common_select" Width="150px" TabIndex="2" OnSelectedIndexChanged="DDLStandard_SelectedIndexChanged"
+                                            CssClass="common_select" Width="300px" TabIndex="2" OnSelectedIndexChanged="DDLStandard_SelectedIndexChanged"
                                             AutoPostBack="true">
                                         </asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="DDLStandard"
@@ -64,7 +64,7 @@
                                     </th>
                                     <td>
                                         <asp:DropDownList runat="server" ID="DDLSubject" DataTextField="cSubjectName" DataValueField="cSubject_ID"
-                                            CssClass="common_select" Width="150px" TabIndex="3">
+                                            CssClass="common_select" Width="300px" TabIndex="3">
                                         </asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="DDLSubject"
                                             ErrorMessage="&lt;img src='assets/img/writing-icon.jpg' title='DELETE' alt='View' border='0'/&gt;"
@@ -74,9 +74,9 @@
                                 <tr>
                                     <th width="100px;">Chapter Index :
                                     </th>
-                                    <td width="200px">
+                                    <td>
                                         <asp:TextBox runat="server" ID="TxtChapterIndex" class="txtbox bgcolrblue" TabIndex="4"
-                                            onkeypress="return validateKeyPress(event,validNums)" Width="150px" />
+                                            onkeypress="return validateKeyPress(event,validNums)" Width="300px" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TxtChapterIndex"
                                             ErrorMessage="&lt;img src='assets/img/writing-icon.jpg' title='DELETE' alt='View' border='0'/&gt;"
                                             ValidationGroup="Main"></asp:RequiredFieldValidator>
@@ -85,9 +85,9 @@
                                 <tr>
                                     <th width="100px;">Chapter Name :
                                     </th>
-                                    <td width="200px">
+                                    <td >
                                         <asp:TextBox runat="server" ID="TxtChapterName" class="txtbox bgcolrblue" TabIndex="5"
-                                            Width="150px" />
+                                            Width="300px" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TxtChapterName"
                                             ErrorMessage="&lt;img src='assets/img/writing-icon.jpg' title='DELETE' alt='View' border='0'/&gt;"
                                             ValidationGroup="Main"></asp:RequiredFieldValidator>
